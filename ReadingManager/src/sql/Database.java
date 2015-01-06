@@ -21,8 +21,8 @@ public class Database
     //Instancie et connecte à la base
     public static Database getConnexionDataBase() throws Exception
     {
-    	
-	    Database db = new Database("D:\\Users\\ptroyard\\Desktop\\UTC\\GI03\\API01\\Workspace\\ReadingManager\\ReadingManager.sqlite");
+    	//Database db = new Database("D:\\Users\\ptroyard\\Desktop\\UTC\\GI03\\API01\\Workspace\\ReadingManager\\ReadingManager.sqlite");
+    	Database db = new Database("C:\\Users\\ptroyard\\git\\ReadingManager\\ReadingManager.sqlite");
 	    db.connect();
 	    return db;
     	
