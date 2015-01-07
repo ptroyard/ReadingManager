@@ -11,7 +11,7 @@
 	<div id="bloc_page">
 		<section>
 			<h1>User Management</h1>
-			<a href="Inscription.jsp" class="floatRight"><img src="img/add.png" alt="Add" id="perso" class="addButtonStyle"/><h2 class="inlineBlock">Add a User</h2></a>
+			<a href="Inscription" class="floatRight"><img src="img/add.png" alt="Add" id="perso" class="addButtonStyle"/><h2 class="inlineBlock">Add a User</h2></a>
 			<h2>Search a user</h2>
 			<input type="text" name="tbSearch" class="marginBottom10px tbWidth marginLeft15pourcent"> <img src="img/Search.png" alt="Search" id="perso" class="searchButtonStyle"/>
 			<h2>Existing users list</h2>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<form method="post" action="InscriptionTreatment" id="Submit">
+	<form method="post" action="Inscription" id="Submit">
 		<div id="Tittle">
 			<h1>Create a new User</h1>
 		</div>

@@ -12,10 +12,10 @@
 	
 		<nav>
 		<ul>
-			<li><a href="BookList.jsp">Book list</a></li>
-			<li><a href="Rate.jsp">Rate a book</a></li>
-			<li><a href="EvaluationsHistory.jsp">Evaluations History</a></li>
-			<li><a href="Contact.jsp">Contact us</a></li>
+			<li><a href="BookList">Book list</a></li>
+			<li><a href="Rate">Rate a book</a></li>
+			<li><a href="EvaluationsHistory">Evaluations History</a></li>
+			<li><a href="Contact">Contact us</a></li>
 		</ul>
 		</nav>
 	

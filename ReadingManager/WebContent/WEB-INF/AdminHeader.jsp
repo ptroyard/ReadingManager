@@ -12,12 +12,12 @@
 	
 		<nav>
 			<ul>
-				<li><a href="UserManagement.jsp">User management</a></li>
-				<li><a href="BookManagement.jsp">Book Management</a></li>
-				<li><a href="EvaluationsManagement.jsp">Evaluations Management</a></li>
-				<li><a href="MatchFindingManagement.jsp">Match Finding
+				<li><a href="UserManagement">User management</a></li>
+				<li><a href="BookManagement">Book Management</a></li>
+				<li><a href="EvaluationsManagement">Evaluations Management</a></li>
+				<li><a href="MatchFindingManagement">Match Finding
 						Management</a></li>
-				<li><a href="Contact.jsp">Contact us</a></li>
+				<li><a href="Contact">Contact us</a></li>
 			</ul>
 		</nav>
 	
