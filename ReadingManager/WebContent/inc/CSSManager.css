@@ -103,6 +103,18 @@ color: #090;
     float: left;
 }
 
+.labelWidth100
+{
+	display: block;
+    width: 100px;
+    float: left;
+}
+
+.bold
+{
+	font-weight: bold;
+}
+
 .info 
 {
 font-style: italic;

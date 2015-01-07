@@ -19,7 +19,34 @@ public class InscriptionTreatment extends HttpServlet
 
 	public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException
 	{
-	
+		try 
+		{
+			UserBean createdUser = new UserBean();
+			createdUser.setMail(request.getParameter("tbMail")); 
+			createdUser.setAdress(request.getParameter("tbAddress"));
+			createdUser.setLastName(request.getParameter("tbName"));
+			createdUser.setFirstName(request.getParameter("tbFirstName"));
+			createdUser.setTel(request.getParameter("tbTelephone"));
+			
+			if("Reader".equals(request.getParameter("rbAdmin")))
+			{
+				createdUser.setAdmin(false);
+			}
+			else
+			{
+				createdUser.setAdmin(true);
+			}
+			
+			UserDAO userDAO= new UserDAO();
+			userDAO.insertUser(createdUser);
+			
+			request.getSession().setAttribute("createdUser", createdUser);
+			response.sendRedirect("RegisterValidation.jsp");
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 
 	}
 	
