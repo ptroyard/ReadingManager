@@ -47,10 +47,12 @@ public class UserDAO {
 		boolean more = resultQuery.next();
 		if (more) {
 			rUser = this.userBeanRowMapper(resultQuery);
+			this.finalize();
 			return rUser;
+			
 
 		} else {
-			dataBase.disconnect();
+			this.finalize();
 			throw new Exception(
 					"Login Failed, user does not exist or incorrect password");
 		}
@@ -70,10 +72,12 @@ public class UserDAO {
 							+ pUser.getAdress()+"', '"
 							+ pUser.getTel()+"', "
 							+ "DATETIME(\"now\") ,"
-							+ isAdmin +",1);";
+							+ "0 ," //Will be active (1) when created user confirms mail
+							+ isAdmin + ");";
 			
 			dataBase.getResultOf(sqlRequest);
 			System.out.println(sqlRequest);
+			this.finalize();
 		} 
 		catch (Exception e) 
 		{

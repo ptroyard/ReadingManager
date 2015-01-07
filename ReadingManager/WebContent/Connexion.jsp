@@ -31,10 +31,12 @@
 						<!-- Error fields positions -->
 						${loginFailed} 
 						${missingFields}
+						${noActivity}
 						<!-- Error fields RAZ -->
 						<%
 							session.setAttribute("loginFailed", "");
 							session.setAttribute("missingFields", "");
+							session.setAttribute("noActivity", "");
 						%>
 					</p>
 				</div>

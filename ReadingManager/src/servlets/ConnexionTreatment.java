@@ -41,11 +41,21 @@ public class ConnexionTreatment extends HttpServlet
 				UserDAO userDAO = new UserDAO();
 				user=userDAO.getLogin(user);
 				
-				//Creation of session
-				HttpSession session = request.getSession(true);
-				session.setAttribute("user", user);
+				if(user.isStatus()==false) //verify if the user is active
+				{
+					String noActivity = "User did not confirm its inscription. The confirmation has been sent by e-mail.";
+					request.getSession().setAttribute("noActivity", noActivity);
+					response.sendRedirect("Connexion.jsp");
+				}
+				else
+				{
+					//Creation of session
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user", user);
+					response.sendRedirect("Home.jsp");
+				}
 				
-				response.sendRedirect("Home.jsp");
+				
 			}
 			
 			
