@@ -179,6 +179,7 @@ color: #E8A22B;
 	display:inline-block;
 	width:40%;
 	height: 40%;
+	cursor: pointer;
 }
 
 .modifyButtonStyle
@@ -186,6 +187,7 @@ color: #E8A22B;
 	display:inline-block;
 	width:40%;
 	height: 40%;
+	cursor: pointer;
 }
 
 .addButtonStyle
