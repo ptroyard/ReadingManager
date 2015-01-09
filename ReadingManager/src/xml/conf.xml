@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<databasesettings>
+		<databasedirectory>C:/Users/Amstrong/git/ReadingManager/ReadingManager/</databasedirectory>
+		<databasename>ReadingManager.sqlite</databasename>
+	</databasesettings>
+	<EmailSettings>
+		<port>465</port>
+		<host>smtp.gmail.com</host>
+		<email>managerreading@gmail.com</email>
+		<password>ReadingMan</password>
+		<username>managerreading</username>
+		<protocol>smtp</protocol>
+	</EmailSettings>
+</root>

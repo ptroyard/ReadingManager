@@ -11,9 +11,12 @@
 	<div id="bloc_page">
 		<section>
 			<h1>Contact us</h1>
-			<p>If you have any question about our website, please feel free to contact us using the following adresses :</p>
-			<p>pierre.troyard@gmail.com</p>
-			<p>93asonko@gmail.com</p>
+			<p>If you have any question about our website, please fill the form below and submit it :</p>
+			<form method="POST" action="ContactUS">
+			    <label for="subject">Subject:</label><input id="subject" name="subject" type="text"/><br/>
+			    <textarea name="body" cols="60" rows="15"></textarea><br/>
+			    <input type="submit" value="Send"/>
+			</form>
 		</section>
 
 	</div>

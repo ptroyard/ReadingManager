@@ -17,7 +17,7 @@
 				<li><a href="EvaluationsManagement.jsp">Evaluations Management</a></li>
 				<li><a href="MatchFindingManagement.jsp">Match Finding
 						Management</a></li>
-				<li><a href="Contact.jsp">Contact us</a></li>
+				<li><a href="ContactUS.jsp">Contact us</a></li>
 			</ul>
 		</nav>
 	

@@ -15,7 +15,7 @@
 			<li><a href="BookList.jsp">Book list</a></li>
 			<li><a href="Rate.jsp">Rate a book</a></li>
 			<li><a href="EvaluationsHistory.jsp">Evaluations History</a></li>
-			<li><a href="Contact.jsp">Contact us</a></li>
+			<li><a href="ContactUS.jsp">Contact us</a></li>
 		</ul>
 		</nav>
 	

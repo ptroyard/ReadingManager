@@ -5,9 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import dao.AppConfigDAO;
+
  
 /**
- * Cette classe fait l'interface avec la base de données.
+ * Cette classe fait l'interface avec la base de donnï¿½es.
  * @author Leucistic
  *
  */
@@ -18,11 +20,12 @@ public class Database
     public  Connection  connection;
     private Statement   requete;
      
-    //Instancie et connecte à la base
+    //Instancie et connecte ï¿½ la base
     public static Database getConnexionDataBase() throws Exception
     {
-    	//Database db = new Database("D:\\Users\\ptroyard\\Desktop\\UTC\\GI03\\API01\\Workspace\\ReadingManager\\ReadingManager.sqlite");
-    	Database db = new Database("C:\\Users\\ptroyard\\git\\ReadingManager\\ReadingManager.sqlite");
+    	AppConfigDAO acman = new AppConfigDAO();
+    	String databasepath = acman.getDatabasePath();
+    	Database db = new Database(databasepath);		
 	    db.connect();
 	    return db;
     	
@@ -31,7 +34,7 @@ public class Database
     
     /**
      * Constructeur de la classe Database
-     * @param dbName Le nom de la base de données
+     * @param dbName Le nom de la base de donnï¿½es
      */
     public Database (String dbName)
     {
@@ -53,8 +56,8 @@ public class Database
     }
      
     /**
-     * Ouvre la base de données spécifiée
-     * @return True si la connection à été réussie. False sinon.
+     * Ouvre la base de donnï¿½es spï¿½cifiï¿½e
+     * @return True si la connection ï¿½ ï¿½tï¿½ rï¿½ussie. False sinon.
      */
     public boolean connect ()
     {
@@ -62,16 +65,16 @@ public class Database
         {
             // Etabli la connection
             connection = DriverManager.getConnection("jdbc:sqlite:"+this.dbName);
-            // Déclare l'objet qui permet de faire les requêtes
+            // Dï¿½clare l'objet qui permet de faire les requï¿½tes
             requete = connection.createStatement();
              
-            // Le PRAGMA synchronous de SQLite permet de vérifier chaque écriture
+            // Le PRAGMA synchronous de SQLite permet de vï¿½rifier chaque ï¿½criture
             // avant d'en faire une nouvelle.
             // Le PRAGMA count_changes de SQLite permet de compter le nombre de
             // changements fait sur la base
-            // Résultats de mes tests :
+            // Rï¿½sultats de mes tests :
             // synchronous OFF, une insertion est 20 fois plus rapide.
-            // La différences avec le count_changes est de l'ordre de la µs.
+            // La diffï¿½rences avec le count_changes est de l'ordre de la ï¿½s.
             // Les autres PRAGMA : http://www.sqlite.org/pragma.html
              
             requete.executeUpdate("PRAGMA synchronous = OFF;");
@@ -82,15 +85,15 @@ public class Database
         catch(SQLException e)
         {
         	
-            // message = "out of memory" souvent le resultat de la BDD pas trouvée
+            // message = "out of memory" souvent le resultat de la BDD pas trouvï¿½e
             e.printStackTrace();
             return false;
         }
     }
      
     /**
-     * Ferme la connection à la base de données
-     * @return True si la connection a bien été fermée. False sinon.
+     * Ferme la connection ï¿½ la base de donnï¿½es
+     * @return True si la connection a bien ï¿½tï¿½ fermï¿½e. False sinon.
      */
     public boolean disconnect ()
     {
@@ -111,9 +114,9 @@ public class Database
     }
      
     /**
-     * Permet de faire une requête SQL
-     * @param requete La requête SQL (avec un ";" à la fin)
-     * @return Un ResultSet contenant le résultat de la requête
+     * Permet de faire une requï¿½te SQL
+     * @param requete La requï¿½te SQL (avec un ";" ï¿½ la fin)
+     * @return Un ResultSet contenant le rï¿½sultat de la requï¿½te
      */
     public ResultSet getResultOf(String requete)
     {
@@ -130,7 +133,7 @@ public class Database
     }
  
     /**
-     * Permet de modifier une entrée de la base de données.</br>
+     * Permet de modifier une entrï¿½e de la base de donnï¿½es.</br>
      * @param requete La requete SQL de modification
      */
     public void updateValue(String requete)
