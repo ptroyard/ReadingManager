@@ -26,7 +26,13 @@ public class ContactUS extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/ContactUS.jsp").forward(request, response);
 		
+		
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		AppConfigDAO appConfig = new AppConfigDAO();
 		String to = appConfig.getAdminMail();
@@ -34,20 +40,11 @@ public class ContactUS extends HttpServlet {
 		String body = request.getParameter("body");
 		try(PrintWriter out = response.getWriter()){
 			mailMan.sendMail(to, subject, body);
-			out.println("<div align='center'>");
-			out.println("<h1>Mail Status</h1>");
-			out.println("Mail sent successfully");
-			out.println("<a href='Home.jsp'>Home</a>");
-			out.println("</div>");
+			request.getRequestDispatcher("/WEB-INF/MailSent.jsp").forward(request, response);
+			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
-		
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
 	}
 
 }

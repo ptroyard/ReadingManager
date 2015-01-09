@@ -4,7 +4,6 @@
 
 <html>
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="inc/CSSManager.css" />
 </head>
@@ -12,12 +11,12 @@
 	
 		<nav>
 			<ul>
-				<li><a href="UserManagement.jsp">User management</a></li>
-				<li><a href="BookManagement.jsp">Book Management</a></li>
-				<li><a href="EvaluationsManagement.jsp">Evaluations Management</a></li>
-				<li><a href="MatchFindingManagement.jsp">Match Finding
+				<li><a href="UserManagement">User management</a></li>
+				<li><a href="BookManagement">Book Management</a></li>
+				<li><a href="EvaluationsManagement">Evaluations Management</a></li>
+				<li><a href="MatchFindingManagement">Match Finding
 						Management</a></li>
-				<li><a href="ContactUS.jsp">Contact us</a></li>
+				<li><a href="ContactUS">Contact us</a></li>
 			</ul>
 		</nav>
 	

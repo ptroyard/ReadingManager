@@ -27,6 +27,6 @@
 			</c:if>
 			</p>
 		</fieldset>
-		<a href="Home.jsp">Retour à la page d'acceuil</a>
+		<a href="Home">Return Home</a>
 	</body>
 </html>

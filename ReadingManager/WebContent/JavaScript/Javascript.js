@@ -39,8 +39,31 @@ function FieldVerifierInscription()
 
 //Check if the format of mail is correct
 function isEmail(myVar){
-    // La 1ère étape consiste à définir l'expression régulière d'une adresse email
+    
     var regEmail = new RegExp('^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$','i');
 
     return regEmail.test(myVar);
   }
+
+
+//Generate dynamic link to modify with parameter (now for add and delete Users etc...)
+function LinkAdaptatorToModify(id) 
+{
+	var a = document.getElementById(id); 
+	if (confirm('Do you want to modify the following user : '+ a.id )) {
+		a = "ModifyUser?idModify="+a.id;
+		window.location.replace(a);
+	}
+
+}
+
+
+//Generate dynamic link to delete with parameter (now for add and delete Users etc...)
+function LinkAdaptatorToDelete(id) 
+{
+	var a = document.getElementById(id);
+	if (confirm('Do you want to delete the following user : '+ a.id )) {
+		a = "DeleteUser?idDelete="+a.id;
+		window.location.replace(a);
+	}
+}

@@ -52,7 +52,7 @@ public class ConnexionTreatment extends HttpServlet
 					//Creation of session
 					HttpSession session = request.getSession(true);
 					session.setAttribute("user", user);
-					response.sendRedirect("Home.jsp");
+					response.sendRedirect("Home");
 				}
 				
 				

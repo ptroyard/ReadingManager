@@ -3,31 +3,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="header.jsp" />
-<script type="text/javascript" src="JavaScript/Javascript.js" ></script>
-<title>Inscription</title>
+<title>ModifyUser</title>
 </head>
-
 <body>
-	<form method="post" action="InscriptionTreatment" id="Submit">
-		<div id="Tittle">
-			<h1>Create a new User</h1>
+<form method="post" action="ModifyUser">
+	<div id="Tittle">
+			<h1>Modify the User : </h1><span class="bold"><%= request.getParameter("idModify") %></span>
+			<input type="hidden" name="idModifyUser" value="<%= request.getParameter("idModify") %>">
 		</div>
-		
+		<br>
 		<fieldset> 
-			<legend>Information about User</legend>
+			<legend>Information about User to modify</legend>
 			<div>
 				<div>
-					<label class="labelWidth80 ">E-mail <span class="requis inlineBlock">*</span></label>
-					<input type="text" name="tbMail" id= "tbMail" class="tbWidth"/>
-					<span id="errorMail" class="requis inlineBlock"></span>
-				</div>
-				<div>
-					<label class="labelWidth80">Name <div class="requis inlineBlock">*</div></label> 
+					<label class="labelWidth80">Name</label> 
 					<input type="text" name="tbName" id = "tbName" class="tbWidth"/>
 				</div>
 				<div>
-					<label class="labelWidth80">First Name <div class="requis inlineBlock">*</div></label>
+					<label class="labelWidth80">First Name</label>
 					<input type="text" name="tbFirstName" id= "tbFirstName" class="tbWidth"/>
 				</div>
 				<div>
@@ -53,11 +48,9 @@
 		
 		<div id="Treatment">
 			<div class="floatRight">
-				<button type="button" id="btnSend" onclick="FieldVerifierInscription();" class="buttonStyle">Register</button> 
-				<button type="button" id="btnCancel" class="buttonStyle" class="buttonStyle"> Cancel</button>
+				<input type="submit" value="Modify" id="submitButton" class="buttonStyle"/> 
 			</div>
 		</div>
 	</form>
 </body>
-
-
+</html>
