@@ -53,7 +53,8 @@ header
 {
 	display : inline-block;
 	width:100%;
-	border-bottom: 4px solid #000066;
+	border: 2px solid #000066;
+	background: #C5E2FF;
 }
 
 
@@ -142,6 +143,31 @@ color: #E8A22B;
 	margin-bottom: 10px;
 }
 
+.marginTop20px
+{
+	margin-bottom: 20px;
+}
+
+.fieldsetAttributes
+{
+	margin-left: 40%;
+	width: 25%;
+	height:20%;
+	margin-top: 10%;
+	background: #C5E2FF;
+}
+
+.connexionButtonPosition
+{
+	margin-left: 61%;
+}
+
+.loginPosition
+{
+	margin-left:16% ;
+	margin-top: 3%;
+}
+
 .tbWidth
 {
 	width: 200px;
@@ -206,9 +232,15 @@ color: #E8A22B;
 
 .buttonStyle
 {
-	font: normal 8pt verdana, helvetica, sans-serif;
-	margin: 3px 3px 0px 0px;
-	border: 1px #999 solid;
+	
+    background: #66C1E4;
+    border: none;
+    color: #FFF;
+    box-shadow: 1px 1px 1px #4C6E91;
+    -webkit-box-shadow: 1px 1px 1px #4C6E91;
+    -moz-box-shadow: 1px 1px 1px #4C6E91;
+    text-shadow: 1px 1px 1px #5079A3;
+    cursor: pointer;
 }
 
 

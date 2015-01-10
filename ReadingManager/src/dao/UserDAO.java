@@ -92,7 +92,7 @@ public class UserDAO {
 	//Function to get all the existing users of the database
 	public List<UserBean> getAllUser() throws SQLException
 	{
-		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 ;";
+		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 ORDER BY MAIL;";
 		ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
 		List<UserBean> userList = new ArrayList<UserBean>();
 		

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<databasesettings>
-		<databasedirectory>C:/Users/Amstrong/git/ReadingManager/ReadingManager/</databasedirectory>
+		<databasedirectory>C:/Users/PTROYARD/git/ReadingManager/ReadingManager/</databasedirectory>
 		<databasename>ReadingManager.sqlite</databasename>
 	</databasesettings>
 	<EmailSettings>

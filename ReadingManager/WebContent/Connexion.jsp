@@ -12,12 +12,13 @@
 
 	<form method="post" action="ConnexionTreatment">
 		<div id="Tittle">
-			<h1>Connexion to Reading Manager</h1>
+			<img src="img/ReadingManager_ico.png" alt="ReadingManager Logo" id="logo" class="logoStyle" />
+			<h1 class="headerTitleStyle">Reading Manager - Connexion</h1>
 		</div>
 
-		<fieldset>
+		<fieldset class="fieldsetAttributes">
 			<legend>Information</legend>
-			<div>
+			<div class="loginPosition">
 				<div>
 					<label class="labelWidth80">E-mail :</label><input type="text"
 						name="tbMail">
@@ -45,7 +46,7 @@
 
 		<div id="Treatment">
 			<div>
-				<input type="submit" value="CONNEXION" id="btnSend">
+				<input type="submit" value="CONNEXION" id="btnSend" class="buttonStyle connexionButtonPosition">
 			</div>
 		</div>
 	</form>

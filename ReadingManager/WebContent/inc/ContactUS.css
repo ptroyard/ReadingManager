@@ -36,7 +36,7 @@
     margin: 0px 0px 5px;
 }
 
-.elegant-aero input[type="text"], .elegant-aero textarea,{
+.elegant-aero input[type="text"], .elegant-aero textarea{
     color: #888;
     width: 70%;
     padding: 0px 0px 0px 5px;
@@ -69,4 +69,10 @@
 }
 .elegant-aero input[type="submit"]:hover{
     background: #3EB1DD;
+}
+
+table tr:nth-child(2n)
+{
+    background-color: #D2E9FF;
+    color : #000000;
 }
