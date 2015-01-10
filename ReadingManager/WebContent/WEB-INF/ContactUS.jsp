@@ -4,22 +4,22 @@
 <html>
 <head>
 <jsp:include page="header.jsp" />
+<link rel="stylesheet" href="inc/ContactUS.css">
 <title>Contact</title>
 </head>
 <body>
-
-	<div id="bloc_page">
-		<section>
-			<h1>Contact us</h1>
-			<p>If you have any question about our website, please fill the form below and submit it :</p>
-			<form method="POST" action="ContactUS">
-			    <label for="subject">Subject:</label><input id="subject" name="subject" type="text"/><br/>
-			    <textarea name="body" cols="60" rows="15"></textarea><br/>
-			    <input type="submit" value="Send"/>
-			</form>
-		</section>
-
-	</div>
+<section>
+	<form method="POST" action="ContactUS" class="elegant-aero">
+	<table>
+    <tr><td><h1>Contact us</h1></td></tr>
+	<tr><td class="instructions">If you have any question about our website, please fill and submit the form :</td></tr>	
+	<tr><td><span class="titre">Subject:</span></td> <td><input id="subject" name="subject" type="text"/></td></tr>
+	<tr><td><span class="titre">Message:</span></td> <td><textarea name="body"></textarea></td></tr>
+	<tr><td><input type="submit" value="Send"/></td></tr>
+	
+	</table>
+	</form>
+</section>
 
 </body>
 </html>

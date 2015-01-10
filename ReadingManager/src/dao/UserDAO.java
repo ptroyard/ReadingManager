@@ -10,6 +10,8 @@ import java.util.List;
 
 
 
+
+import classes.UserNotFoundException;
 import sql.Database;
 import beans.UserBean;
 
@@ -48,18 +50,15 @@ public class UserDAO {
 				+ "' AND PASSWORD = '"
 				+ pUser.getPassword()
 				+ "';";
-		System.out.println(sqlRequest);
 
 		ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
 		boolean more = resultQuery.next();
 		if (more) {
 			rUser = this.userBeanRowMapper(resultQuery);
-			this.finalize();
 			return rUser;
 			
 
 		} else {
-			this.finalize();
 			throw new Exception(
 					"Login Failed, user does not exist or incorrect password");
 		}
@@ -67,37 +66,33 @@ public class UserDAO {
 	}
 
 	//Function to insert a user
-	public void insertUser(UserBean pUser) {
-		try {
-
+	public void insertUser(UserBean pUser) throws Exception{
+		
+		try{
+			this.getUser(pUser.getMail());
+			throw new Exception("This email adress is already taken");
+		}
+		catch(UserNotFoundException ue){
 			int isAdmin = (pUser.isAdmin()) ? 1 : 0 ;
-			
+			pUser.setPassword(this.generatePassword());
 			String sqlRequest = "INSERT INTO TUSAGER0 (MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN) "
 					+ "VALUES('"+ pUser.getMail() +"', '"
-							+ this.generatePassword()+"', '"
+							+ pUser.getPassword()+"', '"
 							+ pUser.getLastName()+"', '"
 							+ pUser.getFirstName()+"', '"
 							+ pUser.getAdress()+"', '"
 							+ pUser.getTel()+"', "
 							+ "DATETIME(\"now\") ,"
-							+ "0 ," //Will be active (1) when created user confirms mail
-							+ isAdmin + ");";
-			
-			dataBase.getResultOf(sqlRequest);
-			System.out.println(sqlRequest);
-			this.finalize();
-		} 
-		catch (Exception e) 
-		{
+							+ "0 ,"+ isAdmin + ");";
+			dataBase.updateValue(sqlRequest);
 		}
-
+		
 	}
 
 	//Function to get all the existing users of the database
 	public List<UserBean> getAllUser() throws SQLException
 	{
 		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 ;";
-		System.out.println(sqlRequest);
 		ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
 		List<UserBean> userList = new ArrayList<UserBean>();
 		
@@ -107,8 +102,6 @@ public class UserDAO {
 			user = this.userBeanRowMapper(resultQuery);
             userList.add(user);
         }
-		
-		this.finalize();
 		return userList;
 
 	}
@@ -118,21 +111,16 @@ public class UserDAO {
 	public void deleteUser(String user) throws SQLException
 	{
 		String sqlRequest = "DELETE FROM TUSAGER0 WHERE MAIL='"+user+"';";
-		System.out.println(sqlRequest);
 		dataBase.getResultOf(sqlRequest);
-		this.finalize();
 	}
 	
 	// Get user by mail (do not finalize it because used into other methods !!!!!!!)
 	public UserBean getUser(String user) throws Exception 
 	{
 		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 WHERE MAIL='"+user+"';";
-		System.out.println(sqlRequest);
 		ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
-		
 		UserBean rUser = new UserBean();
 		boolean more = resultQuery.next();
-		
 		if (more) 
 		{
 			rUser = this.userBeanRowMapper(resultQuery);
@@ -141,8 +129,7 @@ public class UserDAO {
 		} 
 		else 
 		{
-			this.finalize();
-			throw new Exception("Login Failed, user does not exist or incorrect password");
+			throw new UserNotFoundException ("This user doest not exist");
 		}
 		
 	}
@@ -153,7 +140,7 @@ public class UserDAO {
 		
 		if(user.getLastName()=="" || user.getFirstName()=="" || user.getAdress()=="" || user.getTel()=="")
 		{
-			//Gestion des champs vides (pour ne pas insérer des 'null'
+			//Gestion des champs vides (pour ne pas insï¿½rer des 'null'
 			UserBean userInDB = new UserBean();
 			userInDB=this.getUser(user.getMail());
 			if(user.getLastName()=="")
@@ -181,9 +168,7 @@ public class UserDAO {
 				+ "', ADDRESS = '" + user.getAdress()
 				+ "', TEL = '" + user.getTel()
 				+ "' WHERE MAIL='" + user.getMail() +"';";
-		System.out.println(sqlRequest);
 		dataBase.getResultOf(sqlRequest);
-		this.finalize();
 	}
 	
 	

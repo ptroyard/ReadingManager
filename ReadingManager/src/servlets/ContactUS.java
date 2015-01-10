@@ -37,7 +37,9 @@ public class ContactUS extends HttpServlet {
 		AppConfigDAO appConfig = new AppConfigDAO();
 		String to = appConfig.getAdminMail();
 		String subject = request.getParameter("subject");
-		String body = request.getParameter("body");
+		UserBean user = (UserBean) request.getSession().getAttribute("user");
+		String meta = "<p>Sent by "+user.getFirstName()+" "+user.getLastName()+"</p>";
+		String body = request.getParameter("body")+meta;
 		try(PrintWriter out = response.getWriter()){
 			mailMan.sendMail(to, subject, body);
 			request.getRequestDispatcher("/WEB-INF/MailSent.jsp").forward(request, response);

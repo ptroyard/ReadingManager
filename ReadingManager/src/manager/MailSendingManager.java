@@ -30,13 +30,8 @@ public class MailSendingManager {
 		username = mailSettings.get("username");
 		password = mailSettings.get("password");
 		protocol = mailSettings.get("protocol");
-		System.out.println("host: "+host);
-		System.out.println("port: "+port);
-		System.out.println("username: "+username);
-		System.out.println("password: "+password);
-		System.out.println("protocol: "+protocol);
 	}
-	public void sendMail(String to, String subject, String body){
+	public void sendMail(String to, String subject, String body) throws Exception{
 		Properties props = new Properties();
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
@@ -48,18 +43,13 @@ public class MailSendingManager {
 		Session session = Session.getInstance(props, null);
 		session.setDebug(true);
 		Message message = new MimeMessage(session);
-		try {
-		    message.setFrom(new InternetAddress(from));
-		    InternetAddress[] address = {new InternetAddress(to)};
-		    message.setRecipients(Message.RecipientType.TO, address);
-		    message.setSubject(subject);
-		    message.setContent(body, "text/html");
-		    Transport transport = session.getTransport(protocol);
-		    transport.connect(host, username, password);
-		    transport.sendMessage(message, message.getAllRecipients());
-		    System.out.println("The work is done");
-		} catch (MessagingException ex) {
-		    ex.printStackTrace();
-		}
+	    message.setFrom(new InternetAddress(from));
+	    InternetAddress[] address = {new InternetAddress(to)};
+	    message.setRecipients(Message.RecipientType.TO, address);
+	    message.setSubject(subject);
+	    message.setContent(body, "text/html");
+	    Transport transport = session.getTransport(protocol);
+	    transport.connect(host, username, password);
+	    transport.sendMessage(message, message.getAllRecipients());
 	}
 }

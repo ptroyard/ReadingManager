@@ -15,7 +15,12 @@ public class RegisterValidation extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		request.getRequestDispatcher("/WEB-INF/RegisterValidation.jsp").forward(request, response);
+		if(request.getSession().getAttribute("registrationError")==null){
+			request.getRequestDispatcher("/WEB-INF/RegisterValidation.jsp").forward(request, response);
+		}
+		else{
+			request.getRequestDispatcher("/WEB-INF/RegistrationFailed.jsp").forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

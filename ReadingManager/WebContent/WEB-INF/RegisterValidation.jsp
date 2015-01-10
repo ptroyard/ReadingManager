@@ -1,3 +1,4 @@
+<!-- Page called to confirm a registration -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,7 +12,8 @@
 		<title class="info">Inscription Treatment</title>
 	</head>
 	<body>
-		<p class="succes">Inscription réussie</p>
+		<p class="succes">Registration succedeed</p>
+		<p>An email has been sent to the user</p>
 		<fieldset>
 			<p><span class="labelWidth100 bold">Mail :</span>${createdUser.mail}</p>
 			<p><span class="labelWidth100 bold">Last name :</span>${createdUser.lastName }</p>

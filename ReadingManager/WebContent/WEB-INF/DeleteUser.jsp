@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="header.jsp" />
-<title>DeleteUser</title>
+<title>Delete a user</title>
 </head>
 <body>
 	<p class="succes">User has been deleted</p>

@@ -23,8 +23,8 @@ public class Database
     //Instancie et connecte � la base
     public static Database getConnexionDataBase() throws Exception
     {
-    	AppConfigDAO acman = new AppConfigDAO();
-    	String databasepath = acman.getDatabasePath();
+    	AppConfigDAO acdao = new AppConfigDAO();
+    	String databasepath = acdao.getDatabasePath();
     	Database db = new Database(databasepath);		
 	    db.connect();
 	    return db;
@@ -43,7 +43,6 @@ public class Database
     	try
         {
             Class.forName("org.sqlite.JDBC");
-            System.out.println("DRIVER OK ! ");
         }
         catch (ClassNotFoundException e1)
         {
@@ -63,29 +62,14 @@ public class Database
     {
         try
         {
-            // Etabli la connection
             connection = DriverManager.getConnection("jdbc:sqlite:"+this.dbName);
-            // D�clare l'objet qui permet de faire les requ�tes
-            requete = connection.createStatement();
-             
-            // Le PRAGMA synchronous de SQLite permet de v�rifier chaque �criture
-            // avant d'en faire une nouvelle.
-            // Le PRAGMA count_changes de SQLite permet de compter le nombre de
-            // changements fait sur la base
-            // R�sultats de mes tests :
-            // synchronous OFF, une insertion est 20 fois plus rapide.
-            // La diff�rences avec le count_changes est de l'ordre de la �s.
-            // Les autres PRAGMA : http://www.sqlite.org/pragma.html
-             
+            requete = connection.createStatement();             
             requete.executeUpdate("PRAGMA synchronous = OFF;");
-            requete.setQueryTimeout(30);
-             
+            requete.setQueryTimeout(30);    
             return true;
         }
         catch(SQLException e)
         {
-        	
-            // message = "out of memory" souvent le resultat de la BDD pas trouv�e
             e.printStackTrace();
             return false;
         }
@@ -103,7 +87,6 @@ public class Database
         		requete.close();
             if(connection != null)
                 connection.close();
-             
             return true;
         }
         catch(SQLException e)
