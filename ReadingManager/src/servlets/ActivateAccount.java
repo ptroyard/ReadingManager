@@ -29,21 +29,29 @@ public class ActivateAccount extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		try{
-		String mail = request.getParameter("user");
-		UserDAO userDAO= new UserDAO();
-		UserBean userBean = userDAO.getUser(mail);
-		boolean status = userBean.isStatus();
-		if(!status){
-			userBean.setStatus(true);
+		UserDAO userDAO= null;
+		try
+		{
+			userDAO=new UserDAO();
+			String mail = request.getParameter("user");
+			UserBean userBean = userDAO.getUser(mail);
+			boolean status = userBean.isStatus();
+			if(!status){
+				userBean.setStatus(true);
+				userDAO.updateStatus(userBean);
+			}
+			HttpSession session = request.getSession();
+			session.setAttribute("status", status);
+			request.getRequestDispatcher("/WEB-INF/ActivateAccount.jsp?").forward(request, response);
 		}
-		HttpSession session = request.getSession();
-		session.setAttribute("status", status);
-		request.getRequestDispatcher("/WEB-INF/ActivateAccount.jsp?").forward(request, response);
-		}catch(Exception e){
+		catch(Exception e)
+		{
 			out.println("<h1 align='center'>"+e.getMessage()+"</h1>");
 		}
-		
+		finally
+		{
+			userDAO.finalize();
+		}
 	}
 
 

@@ -50,7 +50,7 @@ public class Inscription extends HttpServlet
 					+ "<p>Dear "+createdUser.getFirstName()+" "+createdUser.getLastName()+"</p>"
 					+"<p>Here is your password: "+createdUser.getPassword()+"</p>"
 					+"<p>Complete your registration by activating your account below</p>"
-					+"<a href='http://localhost:8080/ReadingManager/ActivateAccount?user="+createdUser.getMail()+"'>Activate Account</a>"
+					+"<a href='http://localhost:7195/ReadingManager/ActivateAccount?user="+createdUser.getMail()+"'>Activate Account</a>"
 					+"<p>Happy Rating!<br/>Reading Manager Team.";
 			mailMan.sendMail(createdUser.getMail(), subject, body);
 			request.getSession().setAttribute("createdUser", createdUser);

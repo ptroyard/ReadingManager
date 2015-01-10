@@ -23,8 +23,10 @@ public class ConnexionTreatment extends HttpServlet
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+		UserDAO userDAO = null;
 		try
 		{
+			
 			
 			if (request.getParameter("tbMail").isEmpty() || request.getParameter("tbPassword").isEmpty())
 			{
@@ -38,7 +40,7 @@ public class ConnexionTreatment extends HttpServlet
 				user.setMail(request.getParameter("tbMail")); 
 				user.setPassword(request.getParameter("tbPassword"));
 				
-				UserDAO userDAO = new UserDAO();
+				userDAO = new UserDAO();
 				user=userDAO.getLogin(user);
 				
 				if(user.isStatus()==false) //verify if the user is active
@@ -79,7 +81,10 @@ public class ConnexionTreatment extends HttpServlet
 			response.sendRedirect("Connexion.jsp"); 
 		}
 		
-
+		finally
+		{
+			userDAO.finalize();
+		}
 		
 
 	}

@@ -22,6 +22,7 @@ public class ModifyUser extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		UserDAO userDAO = null;
 		try 
 		{	
 			
@@ -32,7 +33,7 @@ public class ModifyUser extends HttpServlet {
 			user.setFirstName(request.getParameter("tbFirstName"));
 			user.setAdress(request.getParameter("tbAddress")); 
 			user.setTel(request.getParameter("tbTelephone"));
-			UserDAO userDAO = new UserDAO();
+			userDAO = new UserDAO();
 			userDAO.updateUser(user);
 			response.sendRedirect("ModifiedUserValidation");
 			
@@ -41,6 +42,10 @@ public class ModifyUser extends HttpServlet {
 		catch (Exception e) 
 		{
 			e.printStackTrace();
+		}
+		finally
+		{
+			userDAO.finalize();
 		}
 	}
 

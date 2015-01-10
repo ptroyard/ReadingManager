@@ -11,6 +11,8 @@ import java.util.List;
 
 
 
+
+
 import classes.UserNotFoundException;
 import sql.Database;
 import beans.UserBean;
@@ -92,7 +94,7 @@ public class UserDAO {
 	//Function to get all the existing users of the database
 	public List<UserBean> getAllUser() throws SQLException
 	{
-		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 ORDER BY MAIL;";
+		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 WHERE STATUS=1 ORDER BY MAIL;";
 		ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
 		List<UserBean> userList = new ArrayList<UserBean>();
 		
@@ -111,7 +113,7 @@ public class UserDAO {
 	public void deleteUser(String user) throws SQLException
 	{
 		String sqlRequest = "DELETE FROM TUSAGER0 WHERE MAIL='"+user+"';";
-		dataBase.getResultOf(sqlRequest);
+		dataBase.updateValue(sqlRequest);
 	}
 	
 	// Get user by mail
@@ -140,7 +142,7 @@ public class UserDAO {
 		
 		if(user.getLastName()=="" || user.getFirstName()=="" || user.getAdress()=="" || user.getTel()=="")
 		{
-			//Gestion des champs vides (pour ne pas ins�rer des 'null')
+			//Gestion des champs vides (pour ne pas ins�rer des 'null'
 			UserBean userInDB = new UserBean();
 			userInDB=this.getUser(user.getMail());
 			if(user.getLastName()=="")
@@ -168,9 +170,18 @@ public class UserDAO {
 				+ "', ADDRESS = '" + user.getAdress()
 				+ "', TEL = '" + user.getTel()
 				+ "' WHERE MAIL='" + user.getMail() +"';";
-		dataBase.getResultOf(sqlRequest);
+		dataBase.updateValue(sqlRequest);
 	}
 	
+	//Delete a user
+	public void updateStatus(UserBean user)
+	{
+		int status;
+		if(!user.isStatus()) status=0;
+		else status=1;
+		String sqlRequest = "UPDATE TUSAGER0 SET STATUS = "+status+" WHERE MAIL='"+user.getMail()+"';";
+		dataBase.updateValue(sqlRequest);
+	}
 	
 	//Function to generate a random string via getRandomNumber
 	private String generatePassword()

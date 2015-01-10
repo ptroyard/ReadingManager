@@ -21,7 +21,7 @@ public class UserManagement extends HttpServlet
 {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
-		UserDAO userDAO;
+		UserDAO userDAO=null;
 		try 
 		{
 			userDAO = new UserDAO();
@@ -37,7 +37,11 @@ public class UserManagement extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-		
+		finally
+		{
+			
+			userDAO.finalize();
+		}
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
