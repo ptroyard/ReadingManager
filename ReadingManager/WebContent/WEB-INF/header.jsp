@@ -13,7 +13,8 @@
 <body>
 
 	<header> 
-		<a href="Home"><img src="img/ReadingManager_ico.png" alt="ReadingManager Logo" id="logo" class="logoStyle" />
+	<img src="img/ReadingManager_ico.png" alt="ReadingManager Logo" id="logo" class="logoStyle" />
+		<a href="Home">
 		<h1 class="headerTitleStyle">Reading Manager</h1></a>
 		<div class="right">
 			<img src="img/user.png" alt="ReadingManager Perso" id="perso" /> ${ user.firstName } ${ user.lastName }

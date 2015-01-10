@@ -114,7 +114,7 @@ public class UserDAO {
 		dataBase.getResultOf(sqlRequest);
 	}
 	
-	// Get user by mail (do not finalize it because used into other methods !!!!!!!)
+	// Get user by mail
 	public UserBean getUser(String user) throws Exception 
 	{
 		String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 WHERE MAIL='"+user+"';";
@@ -140,7 +140,7 @@ public class UserDAO {
 		
 		if(user.getLastName()=="" || user.getFirstName()=="" || user.getAdress()=="" || user.getTel()=="")
 		{
-			//Gestion des champs vides (pour ne pas ins�rer des 'null'
+			//Gestion des champs vides (pour ne pas ins�rer des 'null')
 			UserBean userInDB = new UserBean();
 			userInDB=this.getUser(user.getMail());
 			if(user.getLastName()=="")

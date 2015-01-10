@@ -219,15 +219,15 @@ color: #E8A22B;
 .addButtonStyle
 {
 	display:inline-block;
-	width:15%;
-	height: 15%;
+	width:2%;
+	height: 2%;
 }
 
 .searchButtonStyle
 {
 	display:inline-block;
-	width:2%;
-	height: 2%;
+	width:40px;
+	height: 40px;
 }
 
 .buttonStyle
@@ -243,6 +243,11 @@ color: #E8A22B;
     cursor: pointer;
 }
 
+.noDisplay
+{
+	display:none;
+	
+}
 
 /* Navigation 
 --------------------- */
