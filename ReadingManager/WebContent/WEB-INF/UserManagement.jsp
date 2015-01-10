@@ -17,18 +17,25 @@
 			<h1>User Management</h1>
 			<button type="button" id="btnSearch" onclick="return hiddenSection('SearchTable');" class="buttonStyle">Search a user</button>
 			<br>
-			<fieldset  id="SearchTable" style="display:none">
-			<table>
-			<tr class="tableTextBlue">
-					       <th>Mail <input type="text" name="tbSearchByMail" class="marginTop30px marginBottom10px tbWidth "> </th>
-					       <th>First Name <input type="text" name="tbSearchByFirstName" class="marginBottom10px tbWidth "> </th>
-					       <th>Last name <input type="text" name="tbSearchByLastName" class="marginBottom10px tbWidth "></th>
-					       <th>Address <input type="text" name="tbSearchByAddress" class="marginBottom10px tbWidth "></th>
-					       <th>Phone number <input type="text" name="tbSearchByPhone" class="marginBottom10px tbWidth "></th>
-					   	   <th><a href="Home"><img src="img/Search.png" alt="Search" id="perso" class="searchButtonStyle floatRight"/></a></th>
-					   </tr>
-			</table>
-			</fieldset>
+			<form method="post" action="SearchResults" id="searchSubmit">
+				<fieldset  id="SearchTable" style="display:none">
+					<table>
+							<tr class="tableTextBlue">
+						       <th>Mail <input type="text" id ="tbSearchByMail" name="tbSearchByMail" class="marginTop30px marginBottom10px tbWidth "> </th>
+						       <th>First Name <input type="text" id ="tbSearchByFirstName" name="tbSearchByFirstName" class="marginBottom10px tbWidth "> </th>
+						       <th>Last name <input type="text" id ="tbSearchByLastName" name="tbSearchByLastName" class="marginBottom10px tbWidth "></th>
+						       <th>Address <input type="text" id ="tbSearchByAddress" name="tbSearchByAddress" class="marginBottom10px tbWidth "></th>
+						       <th>Phone number <input type="text" id ="tbSearchByPhone" name="tbSearchByPhone" class="marginBottom10px tbWidth "></th>
+						   		<th>
+						   		<button type="button" onclick="FieldSearchVerifier();" class="buttonStyle">Search</button> 
+						   		</th>
+						   </tr>
+					</table>
+					<span id="errorField" class="requis inlineBlock"></span>
+				</fieldset>
+				
+			</form>
+			
 			<br><a href="Inscription"><img src="img/add.png" alt="Add" id="perso" class="addButtonStyle"/><h2 class="inlineBlock">Add a User</h2></a>
 			<h2>Existing users list</h2>
 				<div class="marginLeft15pourcent">

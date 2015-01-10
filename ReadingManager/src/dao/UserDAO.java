@@ -13,6 +13,7 @@ import java.util.List;
 
 
 
+
 import classes.UserNotFoundException;
 import sql.Database;
 import beans.UserBean;
@@ -52,7 +53,6 @@ public class UserDAO {
 				+ "' AND PASSWORD = '"
 				+ pUser.getPassword()
 				+ "';";
-
 		ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
 		boolean more = resultQuery.next();
 		if (more) {
@@ -136,40 +136,94 @@ public class UserDAO {
 		
 	}
 	
+	//Function to get all the existing users of the database with specific criteria
+		public List<UserBean> getUsers(UserBean userToFind) throws SQLException
+		{
+			String sqlRequest = "SELECT MAIL, PASSWORD, NOM, PRENOM, ADDRESS, TEL, CREA_DT, STATUS, ADMIN FROM TUSAGER0 WHERE ";
+			boolean needAND=false;
+			
+			if(userToFind.getMail()!="")
+			{
+				sqlRequest = sqlRequest + "MAIL='"+ userToFind.getMail() +"' ";
+				needAND=true;
+			}
+			if(userToFind.getFirstName()!="")
+			{
+				if(needAND) sqlRequest=sqlRequest+"AND ";
+				sqlRequest = sqlRequest + "PRENOM='"+ userToFind.getFirstName() +"' ";
+				needAND=true;
+			}
+			if(userToFind.getLastName()!="")
+			{
+				if(needAND) sqlRequest=sqlRequest+"AND ";
+				sqlRequest = sqlRequest + "NOM='"+ userToFind.getLastName() +"' ";
+				needAND=true;
+			}
+			if(userToFind.getAdress()!="")
+			{
+				if(needAND) sqlRequest=sqlRequest+"AND ";
+				sqlRequest = sqlRequest + "ADDRESS='"+ userToFind.getAdress() +"' ";
+				needAND=true;
+			}
+			if(userToFind.getTel()!="")
+			{
+				if(needAND) sqlRequest=sqlRequest+"AND ";
+				sqlRequest = sqlRequest + "TEL='"+ userToFind.getTel() +"' ";
+				needAND=true;
+			}
+			
+			sqlRequest=sqlRequest+";";
+			
+			ResultSet resultQuery = dataBase.getResultOf(sqlRequest);
+			List<UserBean> userList = new ArrayList<UserBean>();
+			
+			while (resultQuery.next()) 
+			{
+				UserBean user = new UserBean();
+				user = this.userBeanRowMapper(resultQuery);
+	            userList.add(user);
+	        }
+			return userList;
+
+		}
+	
 	//Function to update a user
 	public void updateUser(UserBean user) throws Exception
 	{
 		
+		String sqlRequest = "UPDATE TUSAGER0 SET ";
+		boolean needAND=false;
 		if(user.getLastName()=="" || user.getFirstName()=="" || user.getAdress()=="" || user.getTel()=="")
 		{
 			//Gestion des champs vides (pour ne pas ins�rer des 'null'
 			UserBean userInDB = new UserBean();
 			userInDB=this.getUser(user.getMail());
-			if(user.getLastName()=="")
+			if(user.getLastName()!="")
 			{
-				user.setLastName(userInDB.getLastName());
+				if(needAND) sqlRequest=sqlRequest+", ";
+				sqlRequest= sqlRequest + "NOM = '" + user.getLastName()+"'";
+				needAND=true;
 			}
-			if(user.getFirstName()=="")
+			if(user.getFirstName()!="")
 			{
-				user.setFirstName(userInDB.getFirstName());
+				if(needAND) sqlRequest=sqlRequest+", ";
+				sqlRequest= sqlRequest + "PRENOM = '" + user.getFirstName()+"'";
+				needAND=true;
 			}
-			if(user.getAdress()=="")
+			if(user.getAdress()!="")
 			{
-				user.setAdress(userInDB.getAdress());
+				if(needAND) sqlRequest=sqlRequest+", ";
+				sqlRequest= sqlRequest + "ADDRESS = '" + user.getAdress()+"'";
+				needAND=true;
 			}
-			if(user.getTel()=="")
+			if(user.getTel()!="")
 			{
-				user.setTel(userInDB.getTel());
+				if(needAND) sqlRequest=sqlRequest+", ";
+				sqlRequest= sqlRequest + "TEL = '" + user.getTel()+"'";
+				needAND=true;
 			}
+			sqlRequest=sqlRequest+ " WHERE MAIL= '" + user.getMail() + "';";
 		}
-		
-		//Update
-		String sqlRequest = "UPDATE TUSAGER0 SET "
-				+ "NOM = '" + user.getLastName()
-				+ "', PRENOM = '" + user.getFirstName()
-				+ "', ADDRESS = '" + user.getAdress()
-				+ "', TEL = '" + user.getTel()
-				+ "' WHERE MAIL='" + user.getMail() +"';";
 		dataBase.updateValue(sqlRequest);
 	}
 	

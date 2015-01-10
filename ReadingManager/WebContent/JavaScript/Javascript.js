@@ -36,6 +36,45 @@ function FieldVerifierInscription()
 	
 }
 
+function FieldModifyVerifier()
+{
+	
+	var tbFirstName = document.getElementById("tbName").value;
+	var tbLastName = document.getElementById("tbFirstName").value;
+	var tbAdress = document.getElementById("tbAddress").value;
+	var tbPhone = document.getElementById("tbTelephone").value;
+	
+	if(tbFirstName.length==0 && tbLastName.length==0 && tbAdress.length==0 && tbPhone.length==0 )
+	{
+		var error = document.getElementById("errorField");
+		errorField.innerHTML="Please complete at least one of the fields to modify a User";
+	}
+	else
+	{
+	    document.getElementById("submitModify").submit();
+	}
+}
+
+
+function FieldSearchVerifier()
+{
+	var tbMail = document.getElementById("tbSearchByMail").value;
+	var tbFirstName = document.getElementById("tbSearchByFirstName").value;
+	var tbLastName = document.getElementById("tbSearchByLastName").value;
+	var tbAdress = document.getElementById("tbSearchByAddress").value;
+	var tbPhone = document.getElementById("tbSearchByPhone").value;
+	
+	if(tbMail.length==0 && tbFirstName.length==0 && tbLastName.length==0 && tbAdress.length==0 && tbPhone.length==0 )
+	{
+		var error = document.getElementById("errorField");
+		errorField.innerHTML="Please complete at least one of the fields to search a User";
+	}
+	else
+	{
+	    document.getElementById("searchSubmit").submit();
+	}
+}
+
 
 //Check if the format of mail is correct
 function isEmail(myVar){
