@@ -190,14 +190,11 @@ public class UserDAO {
 	//Function to update a user
 	public void updateUser(UserBean user) throws Exception
 	{
-		
 		String sqlRequest = "UPDATE TUSAGER0 SET ";
 		boolean needAND=false;
 		if(user.getLastName()=="" || user.getFirstName()=="" || user.getAdress()=="" || user.getTel()=="")
 		{
 			//Gestion des champs vides (pour ne pas ins�rer des 'null'
-			UserBean userInDB = new UserBean();
-			userInDB=this.getUser(user.getMail());
 			if(user.getLastName()!="")
 			{
 				if(needAND) sqlRequest=sqlRequest+", ";

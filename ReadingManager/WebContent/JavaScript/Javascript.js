@@ -36,6 +36,25 @@ function FieldVerifierInscription()
 	
 }
 
+
+function FieldVerifierAddBook()
+{
+	var tbMail = document.getElementById("tbTitle").value;
+	var tbName = document.getElementById("tbAuthor").value;
+	var tbFirstName = document.getElementById("tbGenre").value;
+
+	if(tbMail.length==0 || tbName.length==0|| tbFirstName.length==0)
+	{
+		var errorNullField = document.getElementById("errorNullField");
+		errorNullField.innerHTML="Please complete the mandatory fields (*)";
+	}
+	else
+	{
+	    document.getElementById("Submit").submit();
+	}
+}
+
+
 function FieldModifyVerifier()
 {
 	
@@ -48,6 +67,24 @@ function FieldModifyVerifier()
 	{
 		var error = document.getElementById("errorField");
 		errorField.innerHTML="Please complete at least one of the fields to modify a User";
+	}
+	else
+	{
+	    document.getElementById("submitModify").submit();
+	}
+}
+
+function FieldModifyBookVerifier()
+{
+	
+	var tbAuthor = document.getElementById("tbAuthor").value;
+	var tbGenre = document.getElementById("tbGenre").value;
+	var tbDescription = document.getElementById("tbDescription").value;
+	
+	if(tbAuthor.length==0 && tbGenre.length==0 && tbDescription.length==0 )
+	{
+		var error = document.getElementById("errorField");
+		errorField.innerHTML="Please complete at least one of the fields to modify a Book";
 	}
 	else
 	{
@@ -75,6 +112,23 @@ function FieldSearchVerifier()
 	}
 }
 
+function FieldSearchBookVerifier()
+{
+	var tbTitle = document.getElementById("tbSearchByTitle").value;
+	var tbAuthor = document.getElementById("tbSearchByAuthor").value;
+	var tbGenre = document.getElementById("tbSearchByGenre").value;
+	var tbDescription = document.getElementById("tbSearchByDescription").value;
+	
+	if(tbTitle.length==0 && tbAuthor.length==0 && tbGenre.length==0 && tbDescription.length==0)
+	{
+		var error = document.getElementById("errorField");
+		errorField.innerHTML="Please complete at least one of the fields to search a Book";
+	}
+	else
+	{
+	    document.getElementById("searchSubmit").submit();
+	}
+}
 
 //Check if the format of mail is correct
 function isEmail(myVar){
@@ -107,6 +161,28 @@ function LinkAdaptatorToDelete(id)
 	}
 }
 
+
+//Generate dynamic link to modify with parameter (now for add and delete Book etc...)
+function LinkAdaptatorToModifyBook(id) 
+{
+	var a = document.getElementById(id); 
+	if (confirm('Do you want to modify the following book : '+ a.id )) {
+		a = "ModifyBook?idModify="+a.id;
+		window.location.replace(a);
+	}
+
+}
+
+
+//Generate dynamic link to delete with parameter (now for add and delete Book etc...)
+function LinkAdaptatorToDeleteBook(id) 
+{
+	var a = document.getElementById(id);
+	if (confirm('Do you want to delete the following book : '+ a.id )) {
+		a = "DeleteBook?idDelete="+a.id;
+		window.location.replace(a);
+	}
+}
 
 
 function hiddenSection(a)
